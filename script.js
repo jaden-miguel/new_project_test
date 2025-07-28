@@ -21,9 +21,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const offset = 80; // Account for fixed navbar
+            const targetPosition = target.offsetTop - offset;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
             });
         }
     });
@@ -39,6 +41,59 @@ window.addEventListener('scroll', () => {
         navbar.style.background = 'rgba(255, 255, 255, 0.95)';
         navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
     }
+});
+
+// Animated Statistics Counter
+function animateCounter(element, target, duration = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    
+    function updateCounter() {
+        start += increment;
+        if (start < target) {
+            element.textContent = Math.floor(start) + (element.textContent.includes('+') ? '+' : '');
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = target + (element.textContent.includes('+') ? '+' : '');
+        }
+    }
+    
+    updateCounter();
+}
+
+// Intersection Observer for animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            
+            // Animate statistics when hero section is visible
+            if (entry.target.classList.contains('hero-stats')) {
+                const statNumbers = entry.target.querySelectorAll('.stat-number');
+                statNumbers.forEach(stat => {
+                    const target = parseInt(stat.textContent.replace(/\D/g, ''));
+                    animateCounter(stat, target);
+                });
+            }
+        }
+    });
+}, observerOptions);
+
+// Observe elements for animation
+document.addEventListener('DOMContentLoaded', () => {
+    const animateElements = document.querySelectorAll('.value-card, .service-card, .testimonial-card, .hero-stats');
+    animateElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
 });
 
 // Contact Form Handling
@@ -67,14 +122,35 @@ contactForm.addEventListener('submit', function(e) {
         return;
     }
     
-    // Simulate form submission (replace with actual form handling)
-    showNotification('Thank you for your message! We will contact you soon.', 'success');
+    // Phone validation (optional)
+    if (formObject.phone) {
+        const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+        if (!phoneRegex.test(formObject.phone.replace(/\s/g, ''))) {
+            showNotification('Please enter a valid phone number.', 'error');
+            return;
+        }
+    }
     
-    // Reset form
-    this.reset();
+    // Show loading state
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    // Simulate form submission (replace with actual form handling)
+    setTimeout(() => {
+        showNotification('Thank you for your message! We will contact you within 24 hours.', 'success');
+        
+        // Reset form
+        this.reset();
+        
+        // Reset button
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }, 2000);
 });
 
-// Notification system
+// Enhanced Notification system
 function showNotification(message, type = 'info') {
     // Remove existing notifications
     const existingNotification = document.querySelector('.notification');
@@ -85,7 +161,10 @@ function showNotification(message, type = 'info') {
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
-    notification.textContent = message;
+    
+    // Add icon based on type
+    const icon = type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ';
+    notification.innerHTML = `<span class="notification-icon">${icon}</span><span class="notification-message">${message}</span>`;
     
     // Add styles
     notification.style.cssText = `
@@ -95,211 +174,161 @@ function showNotification(message, type = 'info') {
         background: ${type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#2196f3'};
         color: white;
         padding: 15px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        border-radius: 10px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
         font-weight: 500;
-        max-width: 300px;
-        opacity: 0;
+        max-width: 400px;
         transform: translateX(100%);
-        transition: all 0.3s ease;
+        transition: transform 0.3s ease;
     `;
     
+    // Add to page
     document.body.appendChild(notification);
     
     // Animate in
     setTimeout(() => {
-        notification.style.opacity = '1';
         notification.style.transform = 'translateX(0)';
     }, 100);
     
-    // Remove after 5 seconds
+    // Auto remove after 5 seconds
     setTimeout(() => {
-        notification.style.opacity = '0';
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
             if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
+                notification.remove();
             }
         }, 300);
     }, 5000);
 }
 
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+// Parallax effect for hero section
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        const rate = scrolled * -0.5;
+        hero.style.transform = `translateY(${rate}px)`;
+    }
+});
+
+// Service category filtering (for future enhancement)
+function filterServices(category) {
+    const serviceCards = document.querySelectorAll('.service-card');
+    const categoryHeaders = document.querySelectorAll('.service-category h3');
+    
+    if (category === 'all') {
+        serviceCards.forEach(card => card.style.display = 'block');
+        categoryHeaders.forEach(header => header.parentElement.style.display = 'block');
+    } else {
+        // Implementation for filtering specific categories
+        console.log('Filtering by:', category);
+    }
+}
+
+// Enhanced hover effects for service cards
+document.addEventListener('DOMContentLoaded', () => {
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+});
+
+// Guarantee card animation
+const guaranteeCard = document.querySelector('.guarantee-card');
+if (guaranteeCard) {
+    guaranteeCard.addEventListener('mouseenter', () => {
+        guaranteeCard.style.transform = 'scale(1.02)';
+        guaranteeCard.style.boxShadow = '0 20px 40px rgba(102, 126, 234, 0.3)';
+    });
+    
+    guaranteeCard.addEventListener('mouseleave', () => {
+        guaranteeCard.style.transform = 'scale(1)';
+        guaranteeCard.style.boxShadow = '0 10px 30px rgba(102, 126, 234, 0.2)';
+    });
+}
+
+// Testimonial carousel (for future enhancement)
+let currentTestimonial = 0;
+const testimonials = document.querySelectorAll('.testimonial-card');
+
+function showTestimonial(index) {
+    testimonials.forEach((testimonial, i) => {
+        testimonial.style.opacity = i === index ? '1' : '0.5';
+        testimonial.style.transform = i === index ? 'scale(1)' : 'scale(0.95)';
+    });
+}
+
+// Auto-rotate testimonials
+setInterval(() => {
+    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+    showTestimonial(currentTestimonial);
+}, 5000);
+
+// Initialize testimonial display
+if (testimonials.length > 0) {
+    showTestimonial(0);
+}
+
+// Enhanced scroll animations
+const scrollAnimations = () => {
+    const elements = document.querySelectorAll('.value-card, .service-card, .testimonial-card, .guarantee-card');
+    
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+            element.classList.add('animate');
+        }
+    });
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
+window.addEventListener('scroll', scrollAnimations);
 
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', () => {
-    const animateElements = document.querySelectorAll('.service-card, .feature, .contact-item');
-    
-    animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-});
+// Call once on load
+scrollAnimations();
 
-// Active navigation link highlighting
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    let currentSection = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.offsetHeight;
-        
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-            currentSection = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Add active state styles for navigation
+// Add CSS for animations
 const style = document.createElement('style');
 style.textContent = `
-    .nav-link.active {
-        color: #2c5aa0 !important;
+    .animate {
+        animation: fadeInUp 0.6s ease forwards;
     }
     
-    .nav-link.active::after {
-        width: 100% !important;
-    }
-`;
-document.head.appendChild(style);
-
-// Loading animation for page
-window.addEventListener('load', () => {
-    const loader = document.createElement('div');
-    loader.className = 'page-loader';
-    loader.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #2c5aa0;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 1;
-        transition: opacity 0.5s ease;
-    `;
-    
-    const loaderContent = document.createElement('div');
-    loaderContent.innerHTML = `
-        <div style="text-align: center; color: white;">
-            <h2 style="margin-bottom: 20px; font-family: 'Inter', sans-serif;">Crowns by Design</h2>
-            <div style="width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.3); border-top: 3px solid white; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-        </div>
-    `;
-    
-    // Add spinner animation
-    const spinnerStyle = document.createElement('style');
-    spinnerStyle.textContent = `
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
         }
-    `;
-    document.head.appendChild(spinnerStyle);
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
     
-    loader.appendChild(loaderContent);
-    document.body.appendChild(loader);
+    .notification-icon {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
     
-    // Remove loader after a short delay
-    setTimeout(() => {
-        loader.style.opacity = '0';
-        setTimeout(() => {
-            if (loader.parentNode) {
-                loader.parentNode.removeChild(loader);
-            }
-        }, 500);
-    }, 1500);
-});
-
-// Form field enhancement
-document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(field => {
-    field.addEventListener('focus', function() {
-        this.parentElement.style.transform = 'scale(1.02)';
-        this.parentElement.style.transition = 'transform 0.2s ease';
-    });
+    .service-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
     
-    field.addEventListener('blur', function() {
-        this.parentElement.style.transform = 'scale(1)';
-    });
-});
-
-// Back to top button
-const backToTopBtn = document.createElement('button');
-backToTopBtn.innerHTML = '↑';
-backToTopBtn.style.cssText = `
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: #ff6b6b;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+    .guarantee-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 `;
 
-backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-document.body.appendChild(backToTopBtn);
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTopBtn.style.opacity = '1';
-        backToTopBtn.style.visibility = 'visible';
-    } else {
-        backToTopBtn.style.opacity = '0';
-        backToTopBtn.style.visibility = 'hidden';
-    }
-});
-
-// Hover effects for service cards
-document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-15px) scale(1.02)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
+document.head.appendChild(style);

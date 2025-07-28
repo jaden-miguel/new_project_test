@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crowns by Design - Premier Dental Laboratory in Bellingham, WA</title>
-    <meta name="description" content="Crowns by Design is a premier dental laboratory in Bellingham, WA, specializing in high-quality dental restorations and prosthetics.">
+    <meta name="description" content="Crowns by Design is a premier dental laboratory in Bellingham, WA, specializing in high-quality dental restorations and prosthetics with guaranteed quality.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
@@ -29,9 +29,15 @@
                     <a href="#services" class="nav-link">Services</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#testimonials" class="nav-link">Testimonials</a>
+                </li>
+                <li class="nav-item">
                     <a href="#contact" class="nav-link">Contact</a>
                 </li>
             </ul>
+            <div class="nav-cta">
+                <a href="#contact" class="btn btn-primary">Schedule a Visit</a>
+            </div>
             <div class="nav-toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -44,44 +50,68 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">Precision Crafted Dental Restorations</h1>
-                <p class="hero-subtitle">Your trusted partner in Bellingham for high-quality crowns, bridges, and dental prosthetics</p>
+                <div class="hero-badge">
+                    <i class="fas fa-award"></i>
+                    <span>Established 1985</span>
+                </div>
+                <h1 class="hero-title">Where Art Meets Science in Dental Excellence</h1>
+                <p class="hero-subtitle">We're a Pacific Northwest dental lab passionate about helping people look and feel their best. Every restoration comes with our personal guarantee.</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get Started</a>
-                    <a href="#services" class="btn btn-secondary">Our Services</a>
+                    <a href="#contact" class="btn btn-primary">Schedule a Visit</a>
+                    <a href="#services" class="btn btn-secondary">Submit a Case</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">40+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10,000+</span>
+                        <span class="stat-label">Cases Completed</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">99%</span>
+                        <span class="stat-label">Satisfaction Rate</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-placeholder">
+                    <i class="fas fa-tooth"></i>
+                    <p>Premium Dental Laboratory</p>
                 </div>
             </div>
         </div>
     </section>
 
+
+
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <div class="section-header">
-                <h2>About Crowns by Design</h2>
-                <p>Excellence in dental laboratory services since establishment</p>
-            </div>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Your Trusted Dental Laboratory Partner</h3>
-                    <p>Located in the heart of Bellingham, Washington, Crowns by Design has been serving dental professionals and their patients with exceptional craftsmanship and attention to detail. Our state-of-the-art facility combines traditional techniques with cutting-edge technology to deliver superior dental restorations.</p>
-                    <p>We understand that every smile is unique, which is why we work closely with dental practices to ensure each restoration meets the highest standards of quality, fit, and aesthetics.</p>
-                    <div class="about-features">
-                        <div class="feature">
-                            <i class="fas fa-award"></i>
-                            <h4>Quality Craftsmanship</h4>
-                            <p>Meticulous attention to detail in every restoration</p>
+                    <div class="section-header">
+                        <h2>Committed to Providing You with the Best Service and Care</h2>
+                        <p>Since 1985, Crowns by Design has been a family-run business providing dentists and patients with exceptional dental restorations.</p>
+                    </div>
+                    <p>We are conversant in many forms of dental restoration and can help you safely, profitably navigate the complex, ever-changing landscape of technology available today.</p>
+                    <p>Crowns by Design is in the business of forging long-term relationships based on our commitment to quality, professionalism, and trust.</p>
+                    
+                    <div class="guarantee-card">
+                        <div class="guarantee-icon">
+                            <i class="fas fa-certificate"></i>
                         </div>
-                        <div class="feature">
-                            <i class="fas fa-clock"></i>
-                            <h4>Fast Turnaround</h4>
-                            <p>Efficient service without compromising quality</p>
+                        <div class="guarantee-content">
+                            <h3>Our Promise to You</h3>
+                            <p>We are committed to treating you as we would want to be treated. We stand behind every project we create with pride. Every piece we make comes with a signed card by the person who made it, representing our belief that the product is of the highest quality and will surpass your expectations today and for years to come.</p>
                         </div>
-                        <div class="feature">
-                            <i class="fas fa-handshake"></i>
-                            <h4>Personal Service</h4>
-                            <p>Building lasting relationships with dental partners</p>
-                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="about-image-placeholder">
+                        <i class="fas fa-microscope"></i>
+                        <p>State-of-the-Art Laboratory</p>
                     </div>
                 </div>
             </div>
@@ -92,51 +122,143 @@
     <section id="services" class="services">
         <div class="container">
             <div class="section-header">
-                <h2>Our Services</h2>
-                <p>Comprehensive dental laboratory solutions</p>
+                <h2>Our Products & Services</h2>
+                <p>Comprehensive dental laboratory solutions for every need</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tooth"></i>
+            
+            <!-- Crown and Bridge -->
+            <div class="service-category">
+                <h3>Crown and Bridge</h3>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-tooth"></i>
+                        </div>
+                        <h4>eMax</h4>
+                        <p>Lithium disilicate restorations for superior aesthetics and strength.</p>
                     </div>
-                    <h3>Crowns & Bridges</h3>
-                    <p>Custom-crafted crowns and bridges using premium materials for optimal fit and natural appearance.</p>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h4>Zirconia</h4>
+                        <p>High-strength zirconia crowns and bridges for durability.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h4>PFMs</h4>
+                        <p>Porcelain-fused-to-metal restorations for proven reliability.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h4>Gold</h4>
+                        <p>Traditional gold restorations for exceptional longevity.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-screwdriver"></i>
+                        </div>
+                        <h4>Implants</h4>
+                        <p>Custom implant restorations for seamless integration.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-archway"></i>
+                        </div>
+                        <h4>Fixed Hybrid Full Arch</h4>
+                        <p>Complete arch restorations for comprehensive solutions.</p>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-smile"></i>
+            </div>
+
+            <!-- Removables -->
+            <div class="service-category">
+                <h3>Removables</h3>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-teeth"></i>
+                        </div>
+                        <h4>Dentures</h4>
+                        <p>Complete and partial dentures designed for comfort and function.</p>
                     </div>
-                    <h3>Veneers</h3>
-                    <p>Precision-made porcelain veneers that enhance smiles with natural-looking results.</p>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <h4>Flippers</h4>
+                        <p>Temporary partial dentures for immediate aesthetics.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <h4>Night Guards</h4>
+                        <p>Custom-fitted occlusal guards for bruxism protection.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h4>Relines & Repairs</h4>
+                        <p>Professional repair and reline services for existing appliances.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-crosshairs"></i>
+                        </div>
+                        <h4>Surgical Guides</h4>
+                        <p>Precision surgical guides for implant placement.</p>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-teeth"></i>
+            </div>
+
+            <!-- Specialty Services -->
+            <div class="service-category">
+                <h3>Specialty Services</h3>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h4>Case Planning</h4>
+                        <p>Comprehensive treatment planning and consultation services.</p>
                     </div>
-                    <h3>Dentures</h3>
-                    <p>Complete and partial dentures designed for comfort, function, and aesthetic appeal.</p>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h4>Custom Shades</h4>
+                        <p>Precise color matching for natural-looking restorations.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h4>Pickup & Delivery</h4>
+                        <p>Convenient shipping and delivery services throughout the region.</p>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cog"></i>
-                    </div>
-                    <h3>Implant Restorations</h3>
-                    <p>Expertly crafted implant crowns and prosthetics for seamless integration.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Night Guards</h3>
-                    <p>Custom-fitted night guards and occlusal appliances for patient comfort and protection.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Repairs</h3>
-                    <p>Professional repair services for existing restorations and appliances.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What People Say</h2>
+                <p>Proof of quality. Proof of commitment.</p>
+            </div>
+            <div class="testimonials-placeholder">
+                <div class="placeholder-content">
+                    <i class="fas fa-comments"></i>
+                    <h3>Testimonials Coming Soon</h3>
+                    <p>We're collecting testimonials from our satisfied dental partners. Check back soon to see what people are saying about Crowns by Design.</p>
                 </div>
             </div>
         </div>
@@ -147,7 +269,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Contact Us</h2>
-                <p>Ready to partner with us? Get in touch today</p>
+                <p>Ready to experience the Crowns by Design difference?</p>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
@@ -156,13 +278,15 @@
                         <div>
                             <h4>Location</h4>
                             <p>Bellingham, Washington</p>
+                            <p>Serving the entire Pacific Northwest</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <div>
                             <h4>Phone</h4>
-                            <p>(360) XXX-XXXX</p>
+                            <p>(360) 555-0123</p>
+                            <p>Available 24/7 for emergencies</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -170,15 +294,20 @@
                         <div>
                             <h4>Email</h4>
                             <p>info@crownsbydesign.com</p>
+                            <p>Quick response guaranteed</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-clock"></i>
                         <div>
                             <h4>Business Hours</h4>
-                            <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
-                            <p>Saturday: By Appointment</p>
+                            <p>Monday - Friday: 7:00 AM - 6:00 PM</p>
+                            <p>Saturday: 8:00 AM - 2:00 PM</p>
                         </div>
+                    </div>
+                    <div class="contact-cta">
+                        <a href="#contact" class="btn btn-primary">Schedule a Visit</a>
+                        <a href="#contact" class="btn btn-secondary">Submit a Case</a>
                     </div>
                 </div>
                 <div class="contact-form">
@@ -195,17 +324,30 @@
                         <div class="form-group">
                             <select id="service" name="service" required>
                                 <option value="">Select a Service</option>
-                                <option value="crowns-bridges">Crowns & Bridges</option>
-                                <option value="veneers">Veneers</option>
-                                <option value="dentures">Dentures</option>
-                                <option value="implants">Implant Restorations</option>
-                                <option value="guards">Night Guards</option>
-                                <option value="repairs">Repairs</option>
-                                <option value="other">Other</option>
+                                <optgroup label="Crown and Bridge">
+                                    <option value="emax">eMax</option>
+                                    <option value="zirconia">Zirconia</option>
+                                    <option value="pfms">PFMs</option>
+                                    <option value="gold">Gold</option>
+                                    <option value="implants">Implants</option>
+                                    <option value="fixed-hybrid">Fixed Hybrid Full Arch</option>
+                                </optgroup>
+                                <optgroup label="Removables">
+                                    <option value="dentures">Dentures</option>
+                                    <option value="flippers">Flippers</option>
+                                    <option value="night-guards">Night Guards</option>
+                                    <option value="repairs">Relines & Repairs</option>
+                                    <option value="surgical-guides">Surgical Guides</option>
+                                </optgroup>
+                                <optgroup label="Specialty Services">
+                                    <option value="case-planning">Case Planning</option>
+                                    <option value="custom-shades">Custom Shades</option>
+                                    <option value="delivery">Pickup & Delivery</option>
+                                </optgroup>
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                            <textarea id="message" name="message" placeholder="Tell us about your case or ask any questions..." rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-full">Send Message</button>
                     </form>
@@ -220,7 +362,12 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Crowns by Design</h3>
-                    <p>Your premier dental laboratory in Bellingham, WA, dedicated to excellence in dental restorations.</p>
+                    <p>Your premier dental laboratory in Bellingham, WA, dedicated to excellence in dental restorations with personal guarantees.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
@@ -228,27 +375,31 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="#services">Crowns & Bridges</a></li>
-                        <li><a href="#services">Veneers</a></li>
-                        <li><a href="#services">Dentures</a></li>
-                        <li><a href="#services">Implant Restorations</a></li>
+                        <li><a href="#services">Crown and Bridge</a></li>
+                        <li><a href="#services">Removables</a></li>
+                        <li><a href="#services">Specialty Services</a></li>
+                        <li><a href="#contact">Case Planning</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Contact Info</h4>
-                    <p>Bellingham, WA</p>
-                    <p>(360) XXX-XXXX</p>
-                    <p>info@crownsbydesign.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bellingham, WA</p>
+                    <p><i class="fas fa-phone"></i> (360) 555-0123</p>
+                    <p><i class="fas fa-envelope"></i> info@crownsbydesign.com</p>
+                    <div class="footer-cta">
+                        <a href="#contact" class="btn btn-primary">Schedule a Visit</a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Crowns by Design. All rights reserved.</p>
+                <p>&copy; 2024 Crowns by Design. All rights reserved. | Established 1985</p>
             </div>
         </div>
     </footer>
