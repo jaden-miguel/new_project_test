@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Crowns by Design | Dental Laboratory in Bellingham, WA</title>
+    <meta
+      name="description"
+      content="Crowns by Design is a boutique dental laboratory in Bellingham, WA specializing in high-quality crowns, bridges, and implant restorations handcrafted with precision."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header & Navigation -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">Crowns by Design</div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button
+          class="cta"
+          onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+        >
+          Request a Case
+        </button>
+      </nav>
+
+      <!-- Hero Section -->
+      <section id="hero">
+        <div class="hero-content">
+          <h1>Beautiful Restorations,<br />Crafted with Care</h1>
+          <p>Your patients deserve the very best. We help you deliver it.</p>
+          <button
+            class="primary-btn"
+            onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+          >
+            Start a Conversation
+          </button>
+        </div>
+      </section>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- About Section -->
+      <section id="about" class="section">
+        <div class="container">
+          <h2>About Crowns by Design</h2>
+          <p>
+            Crowns by Design is a locally owned and operated dental laboratory
+            serving dentists throughout the Pacific Northwest. With over 20
+            years of experience, our master technicians combine artistry and
+            advanced technology to create custom restorations that fit
+            perfectly and look beautiful.
+          </p>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services" class="section alt-bg">
+        <div class="container">
+          <h2>Our Services</h2>
+          <div class="card-grid">
+            <div class="card">
+              <i class="fa-solid fa-tooth"></i>
+              <h3>Crown & Bridge</h3>
+              <p>
+                High-strength zirconia, e.max, and layered porcelain restorations
+                with precise margins.
+              </p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+              <h3>Implant Solutions</h3>
+              <p>
+                Custom abutments and screw-retained crowns designed for long-term
+                success.
+              </p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-computer"></i>
+              <h3>Digital Dentistry</h3>
+              <p>
+                We accept all major intra-oral scans and provide rapid
+                turnaround times.
+              </p>
+            </div>
+            <div class="card">
+              <i class="fa-solid fa-palette"></i>
+              <h3>Shade Matching</h3>
+              <p>
+                On-site or virtual shade consultations to achieve lifelike
+                esthetics.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Us Section -->
+      <section id="why" class="section">
+        <div class="container">
+          <h2>Why Partner With Us</h2>
+          <ul class="features">
+            <li>Consistent, on-time delivery</li>
+            <li>Personal communication with the technician crafting your case</li>
+            <li>Quality assurance on every restoration</li>
+            <li>Competitive pricing for premium work</li>
+            <li>Free local pick-up and delivery in Whatcom & Skagit Counties</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="section alt-bg">
+        <div class="container">
+          <h2>Get in Touch</h2>
+          <div class="contact-grid">
+            <div class="contact-details">
+              <p><i class="fa-solid fa-location-dot"></i> Bellingham, WA 98225</p>
+              <p><i class="fa-solid fa-phone"></i> (360) 555-0123</p>
+              <p><i class="fa-solid fa-envelope"></i> info@crownsbydesign.com</p>
+              <p><i class="fa-solid fa-clock"></i> Monday – Friday: 8:00 AM – 5:00 PM</p>
+            </div>
+
+            <form
+              class="contact-form"
+              action="mailto:info@crownsbydesign.com"
+              method="post"
+              enctype="text/plain"
+            >
+              <input type="text" name="Name" placeholder="Your Name" required />
+              <input
+                type="email"
+                name="Email"
+                placeholder="Your Email"
+                required
+              />
+              <textarea
+                name="Message"
+                rows="5"
+                placeholder="How can we help?"
+                required
+              ></textarea>
+              <button type="submit" class="primary-btn">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>© <span id="year"></span> Crowns by Design. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Update the footer year automatically
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
