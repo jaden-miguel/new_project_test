@@ -44,17 +44,17 @@ window.addEventListener('scroll', () => {
 });
 
 // Animated Statistics Counter
-function animateCounter(element, target, duration = 2000) {
+function animateCounter(element, target, suffix = '', duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
     
     function updateCounter() {
         start += increment;
         if (start < target) {
-            element.textContent = Math.floor(start) + (element.textContent.includes('+') ? '+' : '');
+            element.textContent = Math.floor(start) + suffix;
             requestAnimationFrame(updateCounter);
         } else {
-            element.textContent = target + (element.textContent.includes('+') ? '+' : '');
+            element.textContent = target + suffix;
         }
     }
     
@@ -77,8 +77,14 @@ const observer = new IntersectionObserver((entries) => {
             if (entry.target.classList.contains('hero-stats')) {
                 const statNumbers = entry.target.querySelectorAll('.stat-number');
                 statNumbers.forEach(stat => {
-                    const target = parseInt(stat.textContent.replace(/\D/g, ''));
-                    animateCounter(stat, target);
+                    const originalText = stat.textContent;
+                    // Skip animation for elements that contain % (like the percentage sign)
+                    if (originalText.includes('%')) {
+                        return;
+                    }
+                    const target = parseInt(originalText.replace(/\D/g, ''));
+                    const suffix = originalText.replace(/\d/g, ''); // Get the non-digit part (like +)
+                    animateCounter(stat, target, suffix);
                 });
             }
         }
